@@ -66,7 +66,7 @@ function writeDataToDom(data) {
           <p class="desc">${data.explanation}</p>
           <p class="date">Date: ${data.date}</p>
           <img class="img" src="${data.url}"></img>
-          <a href="${data.hdurl}" target="_blank"></a>
+          <a href="${data.hdurl}" target="_blank">Check image source</a>
           <p class="copy">&copy; ${data.copyright}</p>
           `;
 
