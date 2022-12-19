@@ -14,6 +14,7 @@ let id = null;
 let html = '';
 
 function getData() {
+  list.innerHTML = '';
   fetch(apiUrl)
     .then((resp) => resp.json())
     .then((data) => {
@@ -66,12 +67,15 @@ function writeDataToDom(data) {
           <p class="date">Date: ${data.date}</p>
           <img class="img" src="${data.url}"></img>
           <a href="${data.hdurl}" target="_blank"></a>
+          <p class="copy">&copy; ${data.copyright}</p>
           `;
 
   list.appendChild(output);
 }
 
 /* 
+
+THE DATA FROM THE API
   copyright
 : 
 "Craig Stocks"

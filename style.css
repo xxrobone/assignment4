@@ -14,8 +14,8 @@ body {
 }
 
 header {
-    display: grid;
-    place-content: center;
+    background-color: black;
+    text-align: center;
 }
 
 .get_btn,
@@ -85,25 +85,26 @@ a {
 }
 
 .apod_title {
-    font-size: 1.4rem;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 4rem;
     background-color: black;
     color: white;
+    font-size: 1.4rem;
 }
 
 p {
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 4rem;
     font-size: 1rem;
     font-weight: 100;
 }
 
 .desc {
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 4rem;
     font-size: 1rem;
     font-weight: 400;
 }
 .date {
-    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+    padding: 0.5rem 4rem;
     font-size: 0.6rem;
     font-weight: 100;
     background-color: white;
