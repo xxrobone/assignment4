@@ -25,6 +25,13 @@ header {
     width: 80%;
     text-transform: uppercase;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.get_btn:hover,
+.get_test_btn:hover {
+    background-color: #282828;
+    color: #fafafa;
 }
 
 #repos {
