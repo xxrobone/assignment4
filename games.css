@@ -18,7 +18,7 @@ h1 {
   padding: 0 1rem;
 }
 
-li.game_card {
+.game_card {
   position: relative;
   margin: 1rem 2rem;
   width: 260px;
@@ -32,9 +32,9 @@ li.game_card {
 }
 
  
-h4 {
+.game_card h4 {
   height: fit-content;
-  font-size: .8rem;
+  font-size: 1.4rem;
   overflow: hidden;
 }
 
@@ -57,13 +57,13 @@ span {
   padding: 0.25rem;
 }
 
-.game_desc > h3{
-  padding: 0.25rem 2rem;
+.game_desc h3{
+  padding: 0rem 2rem;
   width: 100%;
   text-align: left;
 }
-.game_desc > p {
-  padding: 1rem 2rem;
+.game_desc p {
+  padding: 0.5rem 2rem 2rem;
   width: 100%;
   text-align: left;
 }
