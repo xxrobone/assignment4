@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="games.css">
+    <title>Game search</title>
+</head>
+
+<body>
+    <header>
+        <p>
+            Here you can search for you favorite games
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione dignissimos quae nostrum aut ab quia odit
+            voluptatum doloribus voluptates suscipit!
+        </p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>GAMES SEARCH</h1>
+        <button class="get_btn">Get games</button>
+        <form id="form">
+            <label for="search">Search game:</label>
+            <input id="search" type="text" name="search" placeholder="game name... ">
+            <input type="submit" value="submit">
+        </form>
+
+        <p>The first is just to show layout, push button get games to see the fetch, but this one has keys so get your
+            own key at rawg</p>
+        <ul id="game_list">
+            <li class="game_card game_card_front">
+                <img src="./warzone2.webp" alt="">
+                <h4>Game Title</h4>
+                <div class="game_info">
+                    <div>
+                        <span class="game_score">Score 96%</span>
+                        <span class="game_plattforms">xbox, pc, ps5</span>
+                    </div>
+                </div>
+                <div class="game_desc">
+                    <h3>About:</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sit quas accusamus delectus
+                        voluptates, architecto a id maxime dicta vero.</p>
+                </div>
+                <div class="game_card_back review">
+
+                </div>
+
+            </li>
+            <li class="game_card game_card_front">
+                <img src="./warzone2.webp" alt="">
+                <div class="game_info">
+                    <h4>Game Title</h4>
+                    <div>
+                        <span class="game_score">Score 96%</span>
+                        <span class="game_plattforms">xbox, pc, ps5</span>
+                    </div>
+                    <div class="game_card_back review">
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </main>
+
+
+    <script src="api.js" type="module"></script>
+</body>
+
+</html>

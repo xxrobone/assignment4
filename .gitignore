@@ -1,0 +1,8 @@
+# ignore all folder with
+
+/api_keys
+
+# and files containg my keys
+
+*.env
+*keys.js
