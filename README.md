@@ -11,14 +11,13 @@ instead of jquery, this project might continue to be pure vanilla js,
 I also done a gitignore so keys wont be visible or uploaded to github, i will send the key files  when handing in the project
 or if I will host it, there will be a demo
 
-### first one is fetching data from github
+### Api calls fetching and todo list
 
-### second one is fethcing from the api shared by Rob(teacher)
-
-api is chosen
-next up
-- search function
+- api calls fetching data (works)
+- search function (works)
 - pagination
 - styling page
 - header, nav, footer
 - maybe connect with an externatl api to get trailers/ videos of each item
+- remove stuff from first page to an other fetch page.
+- add error handling, to fetch and also check array etc. 
