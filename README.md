@@ -15,9 +15,9 @@ or if I will host it, there will be a demo
 
 - api calls fetching data (works)
 - search function (works)
-- pagination
-- styling page
-- header, nav, footer
+- pagination (working on it)
+- styling page (later)
+- header, nav, footer (later)
 - maybe connect with an externatl api to get trailers/ videos of each item
 - remove stuff from first page to an other fetch page.
 - add error handling, to fetch and also check array etc. 
