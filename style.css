@@ -1,4 +1,6 @@
 @import url('./games.css');
+@import url('./pagination.css');
+
 
 * {
     margin: 0;

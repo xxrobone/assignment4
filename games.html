@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="games.css">
+    <script src="https://kit.fontawesome.com/d3412194f0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
     <title>Game search</title>
 </head>
 
@@ -34,6 +34,20 @@
 
         <p>The first is just to show layout, push button get games to see the fetch, but this one has keys so get your
             own key at rawg</p>
+
+        <div class="pagination_wrapper">
+            <button class="pagination_btn prev_btn" title="prev">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div class="pagination_num">
+
+            </div>
+
+            <button class="pagination_btn next_btn" title="next">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
         <ul id="game_list">
             <li class="game_card game_card_front">
                 <img src="./warzone2.webp" alt="">

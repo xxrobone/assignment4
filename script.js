@@ -75,32 +75,26 @@ function writeDataToDom(data) {
 
 /* 
 
-THE DATA FROM THE API
-  copyright
-: 
-"Craig Stocks"
-date
-: 
-"2022-12-19"
-explanation
-: 
-"What's causing the commotion in the Tadpole Nebula? Star formation.  Dusty emission in the Tadpole Nebula, IC 410, lies about 12,000 light-years away in the northern constellation of the Charioteer (Auriga). The cloud of glowing gas is over 100 light-years across, sculpted by stellar winds and radiation from embedded open star cluster NGC 1893. Formed in the interstellar cloud a mere 4 million years ago, bright newly formed cluster stars are seen all around the star-forming nebula.  Notable on the lower-right of the featured image are two relatively dense streamers of material trailing away from the nebula's central regions. Potentially sites of ongoing star formation in IC 410, these cosmic tadpole shapes are about 10 light-years long. The image was processed highlighting the emission from sulfur (red), hydrogen (green), and oxygen (blue) gas -- but with the stars digitally removed."
-hdurl
-: 
-"https://apod.nasa.gov/apod/image/2212/Tadpoles_Stocks_2560.jpg"
-media_type
-: 
-"image"
-service_version
-: 
-"v1"
-title
-: 
-"The Tadpole Nebula in Gas and Dust"
-url
-: 
-"https://apod.nasa.gov/apod/image/2212/Tadpoles_Stocks_960.jpg"
-[[Prototype]]
-: 
-Object
- */
+
+example helper
+function paginateData(pageNumber, pageSize) {
+  // Fetch data from server
+  fetch(
+    'http://example.com/data?pageNumber=' + pageNumber + '&pageSize=' + pageSize
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      // Calculate the total number of pages
+      const totalPages = Math.ceil(data.total / pageSize);
+
+      // Render the data for the current page
+      renderData(data.results);
+
+      // Render the pagination buttons
+      renderPaginationButtons(totalPages, pageNumber);
+    });
+}
+
+// Initialize the pagination with the first page
+paginateData(1, 10);
+*/

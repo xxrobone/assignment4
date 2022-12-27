@@ -9,9 +9,34 @@ btn_get_games.addEventListener('click', () => {
   fetchAPI();
 });
 
-async function fetchAPI() {
+const fetchAPI = async () => {
+  try {
+   /*  const res = await fetch(`${API_URL}?key=${API_KEY}`); */
+    const res = await fetch(`${API_URL}?key=${API_KEY}&page=1&page_size=40`);
+    const data = await res.json();
+    if (!res.ok) {
+      console.log(data.descriptiong);
+      return;
+    } else {
+      console.log(data.results);
+      createGameList(data.results);
+    }
+  } catch (error) {
+    console.log(error + 'something went wrong');
+  }
+};
+
+/* async function fetchAPI() {
   fetch(`${API_URL}?key=${API_KEY}`)
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        console.log('Could not fetch data');
+        return;
+      } else {
+        console.log('response successful');
+        return res.json();
+      }
+    })
     .then((data) => {
       console.log(data.results);
       console.log(data.results[0].parent_platforms);
@@ -20,22 +45,19 @@ async function fetchAPI() {
     .catch((err) => {
       console.error(err.message);
     });
-}
+} */
 
-async function createGameList(item) {
+const createGameList = (item) => {
   let ul = document.querySelector('#game_list');
   let html = '';
 
   item.forEach((item) => {
     let platforms;
-    let ps;
 
     item.parent_platforms.forEach((p) => {
-      ps += `
+      platforms += `
                     <span>${p.platform.name}</span>
                     `;
-
-      platforms = ps;
     });
 
     html += `
@@ -53,7 +75,7 @@ async function createGameList(item) {
 
     ul.innerHTML = html;
   });
-}
+};
 
 const form = document.getElementById('form');
 
