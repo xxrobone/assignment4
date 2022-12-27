@@ -1,5 +1,10 @@
 console.log('api js file connected');
 import { API_URL, API_KEY } from './api_keys/keys.js';
+let btn_get_games = document.querySelector('.get_btn');
+
+btn_get_games.addEventListener('click', () => {
+  fetchAPI();
+});
 
 async function fetchAPI() {
   fetch(`${API_URL}?key=${API_KEY}`)
@@ -14,11 +19,7 @@ async function fetchAPI() {
     });
 }
 
-let btn_get_games = document.querySelector('.get_btn');
 
-btn_get_games.addEventListener('click', () => {
-  fetchAPI();
-});
 
 async function createGameList(item) {
   let ul = document.querySelector('#game_list');

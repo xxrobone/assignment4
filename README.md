@@ -17,6 +17,7 @@ or if I will host it, there will be a demo
 
 api is chosen
 next up
+- search function
 - pagination
 - styling page
 - header, nav, footer
