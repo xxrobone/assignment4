@@ -111,7 +111,7 @@ const paginationData = async () => {
     const res = await fetch(`${API_URL}?key=${API_KEY}&page=1&page_size=20`);
     const data = await res.json();
     if (!res.ok) {
-      console.log(data.descriptiong);
+      console.log("Error can't download data.");
       return;
     } else {
       console.log(data.results);
