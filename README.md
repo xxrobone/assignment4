@@ -15,9 +15,18 @@ or if I will host it, there will be a demo
 
 - api calls fetching data (works)
 - search function (works)
-- pagination (working on it)
+- pagination (working on it, not easy)
 - styling page (later)
 - header, nav, footer (later)
 - maybe connect with an externatl api to get trailers/ videos of each item
 - remove stuff from first page to an other fetch page.
 - add error handling, to fetch and also check array etc. 
+
+### Data ?
+I´ve tested several different ways to fetch data and show it in the dom,
+to just get the data is not hard and show it as it is, 
+pagination thou I have struggled with but I´m solving it
+
+
+## read more about fetch
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
