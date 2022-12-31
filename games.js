@@ -8,17 +8,16 @@ const prevBtn = document.querySelector('.prev_btn');
 const nextBtn = document.querySelector('.next_btn');
 const paginationButtons = document.querySelector('.pagination_btns');
 const gamesList = document.querySelector('#game_list');
-const gamesArr = [...gamesList.querySelectorAll('.game_card')];
+let gamesArr = [...gamesList.querySelectorAll('.game_card')];
 
 const itemsLimit = 10;
 const pageCount = Math.ceil(gamesArr.length / itemsLimit);
 console.log('number of pages: ' + pageCount);
-let currentPage = 1;
+let currentPage;
 
 window.addEventListener('load', () => {
   getPaginationNumbers();
   setCurrentPage(1);
-  console.log('api js file connected');
 
   prevBtn.addEventListener('click', () => {
     setCurrentPage(currentPage - 1);
@@ -28,7 +27,7 @@ window.addEventListener('load', () => {
     setCurrentPage(currentPage + 1);
   });
 
-  paginationBtnClick()
+  paginationBtnClick();
 
   /* document.querySelectorAll('.pagination_btn').forEach((btn) => {
     const pageIndex = Number(btn.getAttribute('page-index'));
@@ -147,7 +146,8 @@ const fetchAPI = async () => {
       return;
     } else {
       console.log(data.results);
-      createGameList(data.results);
+      gamesArr = data.results;
+      insertItem(data.results);
     }
   } catch (error) {
     console.log(error + 'something went wrong');
@@ -164,36 +164,29 @@ const paginationData = async () => {
       console.log("Error can't download data.");
       return;
     } else {
-      console.log(data.results);
-      createGameList(data.results);
+      getPaginationNumbers();
+      setCurrentPage(1);
+
+      prevBtn.addEventListener('click', () => {
+        setCurrentPage(currentPage - 1);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        setCurrentPage(currentPage + 1);
+      });
+
+      paginationBtnClick();
+
+      gamesArr = data.results;
+      console.log('data from pagination fetch : \n' + gamesArr);
+      insertItem(gamesArr);
     }
   } catch (error) {
     console.log(error + 'something went wrong');
   }
 };
 
-/* async function fetchAPI() {
-  fetch(`${API_URL}?key=${API_KEY}`)
-    .then((res) => {
-      if (!res.ok) {
-        console.log('Could not fetch data');
-        return;
-      } else {
-        console.log('response successful');
-        return res.json();
-      }
-    })
-    .then((data) => {
-      console.log(data.results);
-      console.log(data.results[0].parent_platforms);
-      createGameList(data.results);
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
-} */
-
-const createGameList = (item) => {
+const insertItem = (item) => {
   let ul = gamesList;
   let html = '';
 
@@ -240,6 +233,27 @@ const handleSearch = async (search) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data.results);
-      createGameList(data.results);
+      insertItem(data.results);
     });
 };
+
+/* async function fetchAPI() {
+  fetch(`${API_URL}?key=${API_KEY}`)
+    .then((res) => {
+      if (!res.ok) {
+        console.log('Could not fetch data');
+        return;
+      } else {
+        console.log('response successful');
+        return res.json();
+      }
+    })
+    .then((data) => {
+      console.log(data.results);
+      console.log(data.results[0].parent_platforms);
+      insertItem(data.results);
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+} */
