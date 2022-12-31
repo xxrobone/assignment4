@@ -14,7 +14,7 @@ let gamesArr = [];
 const fetchGAMES = async () => {
   try {
     const res = await fetch(
-      `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${20}`
+      `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${40}`
     );
     const data = await res.json();
     gamesArr = data.results;
@@ -68,22 +68,6 @@ window.addEventListener('load', () => {
     setCurrentPage(currentPage + 1);
   });
 
-  const pagiBtns = [
-    ...document.querySelectorAll('button > .pagination_btns > .pagination_btn'),
-  ];
-  pagiBtns.forEach((btn) => {
-    const pageIndex = Number(btn.getAttribute('page-index'));
-    /*  if (pageIndex) { */
-    btn.addEventListener('click', () => {
-      console.log('page index = ' + pageIndex);
-      setCurrentPage(pageIndex);
-    });
-    /*  } */
-  });
-});
-
-/* 
-function paginationBtnClick() {
   const btns = [...document.querySelectorAll('.pagination_btn')];
   btns.forEach((btn) => {
     console.log('page num clicked');
@@ -94,7 +78,7 @@ function paginationBtnClick() {
       });
     }
   });
-} */
+});
 
 const createPaginationButton = (idx) => {
   const paginationBtn = document.createElement('button');
@@ -163,52 +147,6 @@ const setCurrentPage = async (pageNum) => {
       item.classList.remove('hidden');
     }
   });
-
-  /* 
-  when fetching from api
-  item.forEach((item, idx) => {
-  el.innerHTML = ''
-    if (index >= prevRange && index < currRange) {
-      el.appendChild(item)
-
-      createCard 
-      create this so change the games list to have a function
-      creating the card
-    }
-  })
-  */
-};
-
-const paginationData = async () => {
-  try {
-    const res = await fetch(
-      `${API_URL}?key=${API_KEY}&page=${currentPage}&page_size=${itemsLimit}`
-    );
-    const data = await res.json();
-    if (!res.ok) {
-      console.log("Error can't download data.");
-      return;
-    } else {
-      getPaginationNumbers();
-      setCurrentPage(1);
-
-      prevBtn.addEventListener('click', () => {
-        setCurrentPage(currentPage - 1);
-      });
-
-      nextBtn.addEventListener('click', () => {
-        setCurrentPage(currentPage + 1);
-      });
-
-      paginationBtnClick();
-
-      gamesArr = data.results;
-      console.log('data from pagination fetch : \n' + gamesArr);
-      insertItem(gamesArr);
-    }
-  } catch (error) {
-    console.log(error + 'something went wrong');
-  }
 };
 
 const insertItem = (item) => {
@@ -283,3 +221,35 @@ const handleSearch = async (search) => {
       console.error(err.message);
     });
 } */
+
+/* const paginationData = async () => {
+  try {
+    const res = await fetch(
+      `${API_URL}?key=${API_KEY}&page=${currentPage}&page_size=${itemsLimit}`
+    );
+    const data = await res.json();
+    if (!res.ok) {
+      console.log("Error can't download data.");
+      return;
+    } else {
+      getPaginationNumbers();
+      setCurrentPage(1);
+
+      prevBtn.addEventListener('click', () => {
+        setCurrentPage(currentPage - 1);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        setCurrentPage(currentPage + 1);
+      });
+
+      paginationBtnClick();
+
+      gamesArr = data.results;
+      console.log('data from pagination fetch : \n' + gamesArr);
+      insertItem(gamesArr);
+    }
+  } catch (error) {
+    console.log(error + 'something went wrong');
+  }
+}; */
