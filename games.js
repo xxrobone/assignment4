@@ -1,17 +1,3 @@
-window.addEventListener('load', () => {
-  getPaginationNumbers();
-  setCurrentPage(1);
-  console.log('api js file connected');
-
-  document.querySelectorAll('.pagination_btn').forEach((btn) => {
-    const pageIndex = Number(btn.getAttribute('page-index'));
-    if (pageIndex) {
-      btn.addEventListener('click', () => {
-        setCurrentPage(pageIndex);
-      });
-    }
-  });
-});
 import { API_URL, API_KEY } from './api_keys/keys.js';
 
 const SEARCH_URL = `${API_URL}?key=${API_KEY}&search=`;
@@ -24,12 +10,35 @@ const paginationButtons = document.querySelector('.pagination_btns');
 const gamesList = document.querySelector('#game_list');
 const gamesArr = [...gamesList.querySelectorAll('.game_card')];
 
-console.log(gamesArr.length);
-
 const itemsLimit = 10;
 const pageCount = Math.ceil(gamesArr.length / itemsLimit);
 console.log('number of pages: ' + pageCount);
 let currentPage;
+
+window.addEventListener('load', () => {
+  getPaginationNumbers();
+  setCurrentPage(1);
+  console.log('api js file connected');
+
+  prevBtn.addEventListener('click', () => {
+    setCurrentPage(currentPage - 1);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    setCurrentPage(currentPage + 1);
+  });
+
+  document.querySelectorAll('.pagination_btn').forEach((btn) => {
+    const pageIndex = Number(btn.getAttribute('page-index'));
+    if (pageIndex) {
+      btn.addEventListener('click', () => {
+        setCurrentPage(pageIndex);
+      });
+    }
+  });
+});
+
+console.log(gamesArr.length);
 
 const createPaginationButton = (idx) => {
   const paginationBtn = document.createElement('button');
@@ -58,12 +67,36 @@ const handleActivePageNumber = () => {
   });
 };
 
+// create function enable and disable buttons if on first or last page
+// we will set the hanle page button status in the setCurrentPage to check status
+const disableButton = (btn) => {
+  btn.classList.add('disabled');
+  btn.setAttribute('disabled', true);
+};
+const enableButton = (btn) => {
+  btn.classList.remove('disabled');
+  btn.removeAttribute('disabled');
+};
+const handlePageButtonsStatus = () => {
+  if (currentPage === 1) {
+    disableButton(prevBtn);
+  } else {
+    enableButton(prevBtn);
+  }
+  if (pageCount === currentPage) {
+    disableButton(nextBtn);
+  } else {
+    enableButton(nextBtn);
+  }
+};
+
 const setCurrentPage = (pageNum) => {
   currentPage = pageNum;
   const prevCount = (pageNum - 1) * itemsLimit;
   const currCount = pageNum * itemsLimit;
 
   handleActivePageNumber();
+  handlePageButtonsStatus();
 
   gamesArr.forEach((item, idx) => {
     item.classList.add('hidden');
