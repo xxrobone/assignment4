@@ -56,18 +56,17 @@ li > a {
     background: linear-gradient(to bottom right, rgba(0,0,0,.125, orange));
 }
 
-.get_btn,
+.top_games_btn,
 .get_test_btn {
     margin: 1rem auto;
     padding: 1rem 2rem;
-    width: 80%;
+    width: 50%;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
-.get_btn:hover,
-.get_test_btn:hover {
+.top_games_btn:hover {
     background-color: #282828;
     color: #fafafa;
 }

@@ -5,6 +5,8 @@
     justify-content: center;
     background-color: lightgray;
   }
+
+  .btn,
   .pagination_btn {
     font-size: 1.1rem;
     background-color: transparent;
@@ -17,6 +19,9 @@
     border-radius: .2rem;
     transition: background 0.3s ease, color 0.2s ease-out;
   }
+
+  .btn:hover,
+  .btn:not(.disabled):hover,
   .pagination_btn:hover,
   .pagination_btn:not(.disabled):hover {
     background: #888;
@@ -27,12 +32,12 @@
     background: #08b984;
   }
 
-  .pagination_btn > i {
+  .btn > i {
     font-size: 1.4rem;
     color: black;
   }
 
-  .pagination_btn:not(.disabled):hover i {
+  .btn:not(.disabled):hover i {
     color: #fafafa;
   }
 

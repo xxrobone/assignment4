@@ -1,22 +1,63 @@
-import { API_URL, API_KEY } from './api_keys/keys.js';
+import { API_URL_GAMES, API_URL_TOP, API_KEY } from './api_keys/keys.js';
 
-const SEARCH_URL = `${API_URL}?key=${API_KEY}&search=`;
+const SEARCH_GAMES_URL = `${API_URL_GAMES}?key=${API_KEY}&search=`;
 
-let btn_get_games = document.querySelector('.get_btn');
+let gamesBtn = document.querySelector('.top_games_btn');
 //
 const prevBtn = document.querySelector('.prev_btn');
 const nextBtn = document.querySelector('.next_btn');
 const paginationButtons = document.querySelector('.pagination_btns');
 const gamesList = document.querySelector('#game_list');
-let gamesArr = [...gamesList.querySelectorAll('.game_card')];
+/* let gamesArr = [...gamesList.querySelectorAll('.game_card')]; */
+let gamesArr = [];
+
+const fetchGAMES = async () => {
+  try {
+    const res = await fetch(
+      `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${20}`
+    );
+    const data = await res.json();
+    gamesArr = data.results;
+    if (!res.ok) {
+      console.log(data.description);
+      return;
+    } else {
+      insertItem(gamesArr);
+      console.log(data);
+      console.log(gamesArr);
+      getPaginationNumbers(gamesArr);
+    }
+  } catch (error) {
+    console.log(error + 'something went wrong');
+  }
+};
+
+const getTopGames = async () => {
+  try {
+    const res = await fetch(`${API_URL_TOP}?key=${API_KEY}`);
+    const data = await res.json();
+    if (!res.ok) {
+      console.log(data.description);
+      return;
+    } else {
+      insertItem(data.results);
+    }
+  } catch (error) {
+    console.log(error + 'something went wrong');
+  }
+};
+
+gamesBtn.addEventListener('click', () => {
+  getTopGames();
+});
 
 const itemsLimit = 10;
-const pageCount = Math.ceil(gamesArr.length / itemsLimit);
-console.log('number of pages: ' + pageCount);
+/* const pageCount = Math.ceil(gamesArr.length / itemsLimit); */
+let pageCount;
 let currentPage;
 
 window.addEventListener('load', () => {
-  getPaginationNumbers();
+  fetchGAMES();
   setCurrentPage(1);
 
   prevBtn.addEventListener('click', () => {
@@ -27,21 +68,25 @@ window.addEventListener('load', () => {
     setCurrentPage(currentPage + 1);
   });
 
-  paginationBtnClick();
-
-  /* document.querySelectorAll('.pagination_btn').forEach((btn) => {
+  const pagiBtns = [
+    ...document.querySelectorAll('button > .pagination_btns > .pagination_btn'),
+  ];
+  pagiBtns.forEach((btn) => {
     const pageIndex = Number(btn.getAttribute('page-index'));
-    if (pageIndex) {
-      btn.addEventListener('click', () => {
-        setCurrentPage(pageIndex);
-      });
-    }
-  }); */
+    /*  if (pageIndex) { */
+    btn.addEventListener('click', () => {
+      console.log('page index = ' + pageIndex);
+      setCurrentPage(pageIndex);
+    });
+    /*  } */
+  });
 });
 
+/* 
 function paginationBtnClick() {
   const btns = [...document.querySelectorAll('.pagination_btn')];
   btns.forEach((btn) => {
+    console.log('page num clicked');
     const pageIndex = Number(btn.getAttribute('page-index'));
     if (pageIndex) {
       btn.addEventListener('click', () => {
@@ -49,9 +94,7 @@ function paginationBtnClick() {
       });
     }
   });
-}
-
-console.log(gamesArr.length);
+} */
 
 const createPaginationButton = (idx) => {
   const paginationBtn = document.createElement('button');
@@ -63,7 +106,9 @@ const createPaginationButton = (idx) => {
   paginationButtons.appendChild(paginationBtn);
 };
 
-const getPaginationNumbers = () => {
+const getPaginationNumbers = async (data) => {
+  await data;
+  pageCount = Math.ceil(data.length / itemsLimit);
   for (let i = 1; i <= pageCount; i++) {
     createPaginationButton(i);
   }
@@ -103,7 +148,8 @@ const handlePageButtonsStatus = () => {
   }
 };
 
-const setCurrentPage = (pageNum) => {
+const setCurrentPage = async (pageNum) => {
+  let data = [...document.querySelectorAll('.game_card')];
   currentPage = pageNum;
   const prevCount = (pageNum - 1) * itemsLimit;
   const currCount = pageNum * itemsLimit;
@@ -111,7 +157,7 @@ const setCurrentPage = (pageNum) => {
   handleActivePageNumber();
   handlePageButtonsStatus();
 
-  gamesArr.forEach((item, idx) => {
+  data.forEach((item, idx) => {
     item.classList.add('hidden');
     if (idx >= prevCount && idx < currCount) {
       item.classList.remove('hidden');
@@ -131,27 +177,6 @@ const setCurrentPage = (pageNum) => {
     }
   })
   */
-};
-
-btn_get_games.addEventListener('click', () => {
-  fetchAPI();
-});
-
-const fetchAPI = async () => {
-  try {
-    const res = await fetch(`${API_URL}?key=${API_KEY}`);
-    const data = await res.json();
-    if (!res.ok) {
-      console.log(data.descriptiong);
-      return;
-    } else {
-      console.log(data.results);
-      gamesArr = data.results;
-      insertItem(data.results);
-    }
-  } catch (error) {
-    console.log(error + 'something went wrong');
-  }
 };
 
 const paginationData = async () => {
@@ -216,8 +241,8 @@ const insertItem = (item) => {
   });
 };
 
+// for the search function get input from form
 const form = document.getElementById('form');
-
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   // so many ways of acutally doing this :D
@@ -228,8 +253,9 @@ form.addEventListener('submit', function (e) {
   handleSearch(search);
 });
 
+// function to fetch the search query
 const handleSearch = async (search) => {
-  fetch(SEARCH_URL + `${search}`)
+  fetch(SEARCH_GAMES_URL + `${search}`)
     .then((res) => res.json())
     .then((data) => {
       console.log(data.results);
