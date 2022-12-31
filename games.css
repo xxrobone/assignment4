@@ -19,6 +19,13 @@ h1 {
   padding: 0 1rem;
 }
 
+@media screen and (min-width: 768px) {
+  #game_list {
+    margin: 0 auto;
+    width: 80%;
+  }
+}
+
 .game_card {
   position: relative;
   margin: 1rem 2rem;

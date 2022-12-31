@@ -13,7 +13,7 @@ const gamesArr = [...gamesList.querySelectorAll('.game_card')];
 const itemsLimit = 10;
 const pageCount = Math.ceil(gamesArr.length / itemsLimit);
 console.log('number of pages: ' + pageCount);
-let currentPage;
+let currentPage = 1;
 
 window.addEventListener('load', () => {
   getPaginationNumbers();
@@ -28,7 +28,21 @@ window.addEventListener('load', () => {
     setCurrentPage(currentPage + 1);
   });
 
-  document.querySelectorAll('.pagination_btn').forEach((btn) => {
+  paginationBtnClick()
+
+  /* document.querySelectorAll('.pagination_btn').forEach((btn) => {
+    const pageIndex = Number(btn.getAttribute('page-index'));
+    if (pageIndex) {
+      btn.addEventListener('click', () => {
+        setCurrentPage(pageIndex);
+      });
+    }
+  }); */
+});
+
+function paginationBtnClick() {
+  const btns = [...document.querySelectorAll('.pagination_btn')];
+  btns.forEach((btn) => {
     const pageIndex = Number(btn.getAttribute('page-index'));
     if (pageIndex) {
       btn.addEventListener('click', () => {
@@ -36,7 +50,7 @@ window.addEventListener('load', () => {
       });
     }
   });
-});
+}
 
 console.log(gamesArr.length);
 
@@ -142,7 +156,9 @@ const fetchAPI = async () => {
 
 const paginationData = async () => {
   try {
-    const res = await fetch(`${API_URL}?key=${API_KEY}&page=1&page_size=20`);
+    const res = await fetch(
+      `${API_URL}?key=${API_KEY}&page=${currentPage}&page_size=${itemsLimit}`
+    );
     const data = await res.json();
     if (!res.ok) {
       console.log("Error can't download data.");
@@ -178,7 +194,7 @@ const paginationData = async () => {
 } */
 
 const createGameList = (item) => {
-  let ul = gameList;
+  let ul = gamesList;
   let html = '';
 
   item.forEach((item) => {
@@ -227,10 +243,3 @@ const handleSearch = async (search) => {
       createGameList(data.results);
     });
 };
-
-// could get form data like this, maybe better when getting more input data
-/* const data = new FormData(form);
-    for (const [name, value] of data) {
-      console.log(name, ':', value);
-    }
-      */
