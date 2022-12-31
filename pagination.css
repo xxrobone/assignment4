@@ -22,7 +22,7 @@
     background: #888;
     color: white;
   }
-  .pagination_btn.active {
+  .active {
     color: #fff;
     background: #08b984;
   }

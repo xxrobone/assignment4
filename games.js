@@ -2,10 +2,11 @@ window.addEventListener('load', () => {
   getPaginationNumbers();
   setCurrentPage(1);
   console.log('api js file connected');
-  document.querySelectorAll('.pagination_btn').forEach((button) => {
-    const pageIndex = Number(button.getAttribute('page-index'));
+
+  document.querySelectorAll('.pagination_btn').forEach((btn) => {
+    const pageIndex = Number(btn.getAttribute('page-index'));
     if (pageIndex) {
-      button.addEventListener('click', () => {
+      btn.addEventListener('click', () => {
         setCurrentPage(pageIndex);
       });
     }
