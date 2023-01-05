@@ -52,7 +52,9 @@ h1 {
 }
 
 .game_card:hover {
+  transform: translateY(-2%);
   box-shadow: 0 5px 10px 10px rgba(0, 0, 0, .125), inset 0 0 2px 0px #fafafa;
+  filter: drop-shadow(0 3px 20px rgb(12, 12, 12));
   cursor: pointer;
 }
 
@@ -125,9 +127,11 @@ span {
   opacity: 1;
 }
 
+/* 
+
 .game_card:hover .game_review {
   transform: translateY(0%) translateX(0%);
-}
+} */
 
 /* 
 @media (min-width: 420px) {

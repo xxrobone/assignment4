@@ -162,7 +162,6 @@ img {
     margin: 0 auto;
     max-width: 360px;
     width: 100%;
-    border: 5px solid black;
 }
 
 .output > a {
