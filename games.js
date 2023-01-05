@@ -234,8 +234,8 @@ form.addEventListener('submit', function (e) {
 
   let search = document.querySelector('#search').value;
   console.log('this is the new search value inside submit function: ' + search);
-
   handleSearch(search);
+  form.reset();
 });
 
 // function to fetch the search query
