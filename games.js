@@ -7,7 +7,7 @@ let gamesBtn = document.querySelector('.top_games_btn');
 const prevBtn = document.querySelector('.prev_btn');
 const nextBtn = document.querySelector('.next_btn');
 const paginationButtons = document.querySelector('.pagination_btns');
-const gamesList = document.querySelector('#game_list');
+const gamesList = document.querySelector('#games_list');
 /* let gamesArr = [...gamesList.querySelectorAll('.game_card')]; */
 let gamesArr = [];
 
@@ -41,7 +41,7 @@ const fetchGAMES = async () => {
   }
 };
 
-/* fetchGAMES(); */
+fetchGAMES();
 
 // get top games fetch
 const getTopGames = async () => {
@@ -188,6 +188,8 @@ const setCurrentPage = async (pageNum) => {
   });
 };
 
+// creating the game cards from the fetch
+
 const insertItem = (item) => {
   let ul = gamesList;
   let html = '';
@@ -204,13 +206,18 @@ const insertItem = (item) => {
     html += `
     <li class="game_card game_card_front">
                 <img src="${item.background_image}" alt="">
-                <h4>${item.name}</h4>
+                <h2>${item.name}</h2>
                 <div class="game_info">
                     <div>
                         <span class="game_score">Rating: ${item.rating}</span>
                         <span class="game_score">Metacritic: ${item.metacritic}</span>
                         <p class="game_plattforms">${platforms}</p>
                     </div>
+                </div>
+                <div class="game_card_back game_review">
+                    <p>review</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate ipsam fugiat facilis dolorum
+                        at impedit quae laboriosam ullam laudantium optio.</p>
                 </div>
             </li>
     `;
