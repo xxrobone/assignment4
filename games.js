@@ -11,15 +11,24 @@ const gamesList = document.querySelector('#game_list');
 /* let gamesArr = [...gamesList.querySelectorAll('.game_card')]; */
 let gamesArr = [];
 
+const itemsLimit = 10;
+/* const pageCount = Math.ceil(gamesArr.length / itemsLimit); */
+let pageCount;
+let currentPage = 1;
+
+// set fetch here?
+
+// fetch api
+
 const fetchGAMES = async () => {
   try {
     const res = await fetch(
-      `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${40}`
+      `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${20}`
     );
     const data = await res.json();
     gamesArr = data.results;
     if (!res.ok) {
-      console.log(data.description);
+      console.log('error getting data');
       return;
     } else {
       insertItem(gamesArr);
@@ -32,6 +41,9 @@ const fetchGAMES = async () => {
   }
 };
 
+/* fetchGAMES(); */
+
+// get top games fetch
 const getTopGames = async () => {
   try {
     const res = await fetch(`${API_URL_TOP}?key=${API_KEY}`);
@@ -46,18 +58,39 @@ const getTopGames = async () => {
     console.log(error + 'something went wrong');
   }
 };
+const fetchTest = async () => {
+  // https://api.rawg.io/api/platforms - plattforms
+  // upcoming games https://api.rawg.io/api/games?dates=2023-01-01,2023-12-31&ordering=-added
+  // most popular games in 2022 https://api.rawg.io/api/games?dates=2019-01-01,2019-12-31&ordering=-added
+  try {
+    const res = await fetch(
+      `https://api.rawg.io/api/games?key=${API_KEY}?metacritic=80,100`
+    );
+    const data = await res.json();
+    if (!res.ok) {
+      console.log(data.description);
+      return;
+    } else {
+      console.log(data.results);
+    }
+  } catch (error) {
+    console.log(error + 'something went wrong');
+  }
+};
+
+/* fetchTest(); */
+// platforms
+// pc 4
+// playstation 5 id 187
+// xbox series x/s id 186
+// Nintendo Switch id 7
 
 gamesBtn.addEventListener('click', () => {
   getTopGames();
 });
 
-const itemsLimit = 10;
-/* const pageCount = Math.ceil(gamesArr.length / itemsLimit); */
-let pageCount;
-let currentPage;
-
 window.addEventListener('load', () => {
-  fetchGAMES();
+  /*  fetchGAMES(); */
   setCurrentPage(1);
 
   prevBtn.addEventListener('click', () => {
@@ -68,6 +101,22 @@ window.addEventListener('load', () => {
     setCurrentPage(currentPage + 1);
   });
 
+  btnClick();
+});
+
+const createPaginationButton = async (idx) => {
+  const paginationBtn = document.createElement('button');
+  paginationBtn.classList.add('pagination_btn');
+  paginationBtn.textContent = await idx;
+  paginationBtn.setAttribute('page-index', idx);
+  paginationBtn.setAttribute('aria-label', 'Page: ' + idx);
+  /*  console.log(paginationBtn); */
+  paginationButtons.appendChild(paginationBtn);
+
+  btnClick();
+};
+
+function btnClick() {
   const btns = [...document.querySelectorAll('.pagination_btn')];
   btns.forEach((btn) => {
     console.log('page num clicked');
@@ -78,17 +127,7 @@ window.addEventListener('load', () => {
       });
     }
   });
-});
-
-const createPaginationButton = (idx) => {
-  const paginationBtn = document.createElement('button');
-  paginationBtn.classList.add('pagination_btn');
-  paginationBtn.textContent = idx;
-  paginationBtn.setAttribute('page-index', idx);
-  paginationBtn.setAttribute('aria-label', 'Page: ' + idx);
-  /*  console.log(paginationBtn); */
-  paginationButtons.appendChild(paginationBtn);
-};
+}
 
 const getPaginationNumbers = async (data) => {
   await data;
@@ -169,6 +208,7 @@ const insertItem = (item) => {
                 <div class="game_info">
                     <div>
                         <span class="game_score">Rating: ${item.rating}</span>
+                        <span class="game_score">Metacritic: ${item.metacritic}</span>
                         <p class="game_plattforms">${platforms}</p>
                     </div>
                 </div>
