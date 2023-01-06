@@ -197,7 +197,6 @@ const xbox = '<i class="fa-brands fa-xbox"></i>';
 const pc = '<i class="fa-solid fa-headset"></i>';
 const nintendo = '<i class="fa-solid fa-n"></i>';
 
-
 const createItem = (item) => {
   let ul = gamesList;
   let html = '';
@@ -253,12 +252,24 @@ const createItem = (item) => {
   });
 };
 
+const searchBtnActive = document.querySelector('.fa-magnifying-glass');
+
+searchBtnActive.addEventListener('click', () => {
+  const wrapper = document.querySelector('form > .search_wrapper');
+  const label = document.querySelector('form > .search_wrapper > label');
+  const sInput = document.querySelector('#search');
+  const subBtn = document.querySelector('form > .search_wrapper > #submit');
+
+  wrapper.classList.toggle('active');
+  label.classList.toggle('active');
+  sInput.classList.toggle('active');
+  subBtn.classList.toggle('active');
+});
+
 // for the search function get input from form
 const form = document.getElementById('form');
 form.addEventListener('submit', function (e) {
-  e.preventDefault();
-  // so many ways of acutally doing this :D
-
+  e.preventDefault(); // so many ways of acutally doing this :D
   let search = document.querySelector('#search').value;
   console.log('this is the new search value inside submit function: ' + search);
   handleSearch(search);
