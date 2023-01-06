@@ -1,6 +1,8 @@
 @import url('./css/header.css');
 @import url('./css/nav.css');
 @import url('./css/games.css');
+@import url('./css/hero.css');
+@import url('./css/search.css');
 @import url('./pagination.css');
 
 :root {
@@ -12,7 +14,7 @@
     --color-link: #F9F6EE;
 
     --color-card-bg: #5e057e;
-    --color-card: #dcbee6;
+    --color-card: #e4d9e8;
 
 }
 
@@ -36,7 +38,9 @@ body {
 }
 
   h1 {
+    color: var(--color-card-bg);
     text-align: center;
+    text-shadow: 3px 4px 7px rgba(163, 161, 161, 0.8);
   }
 i {
     height: 24px;
