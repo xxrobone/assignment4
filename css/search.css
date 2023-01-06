@@ -37,6 +37,7 @@
 .form .search_wrapper label {
     position: absolute;
     left: 0.5rem;
+    bottom: 0.1rem;
     background-color: transparent;
 }
 
