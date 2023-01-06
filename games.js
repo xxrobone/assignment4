@@ -1,6 +1,7 @@
 import { API_URL_GAMES, API_URL_TOP, API_KEY } from './api_keys/keys.js';
 
-const SEARCH_GAMES_URL = `${API_URL_GAMES}?key=${API_KEY}&search=`;
+/* const SEARCH_GAMES_URL = `${API_URL_GAMES}?key=${API_KEY}&search=`; */
+const SEARCH_GAMES_URL = `${''}?key=${''}&search=`;
 
 let gamesBtn = document.querySelector('.top_games_btn');
 //
@@ -23,7 +24,8 @@ let currentPage = 1;
 const fetchGAMES = async () => {
   try {
     const res = await fetch(
-      `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${20}`
+      /* `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${20}` */
+      `${''}?key=${''}&page=${1}&page_size=${20}`
     );
     const data = await res.json();
     gamesArr = data.results;
@@ -64,7 +66,8 @@ const fetchTest = async () => {
   // most popular games in 2022 https://api.rawg.io/api/games?dates=2019-01-01,2019-12-31&ordering=-added
   try {
     const res = await fetch(
-      `https://api.rawg.io/api/games?key=${API_KEY}?metacritic=80,100`
+     /*  `https://api.rawg.io/api/games?key=${API_KEY}?metacritic=80,100` */
+       `https://api.rawg.io/api/games?key=${''}?metacritic=80,100` 
     );
     const data = await res.json();
     if (!res.ok) {

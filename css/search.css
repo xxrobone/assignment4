@@ -90,7 +90,7 @@ form input[type="text"] {
     transition: all 1s ease-in-out;
 }
 
-form input[type="submit"] {
+form #submit {
     position: absolute;
     right: 1rem;
     top: 0.4rem;
@@ -104,9 +104,14 @@ form input[type="submit"] {
     font-weight: 100;
 }
 
-form input[type="submit"].active {
+form #submit.active {
     display: inline-block;
     width: unset;
+}
+
+form #submit:hover,
+form #submit:active {
+
 }
 
 
