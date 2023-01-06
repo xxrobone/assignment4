@@ -1,4 +1,4 @@
-import { API_URL_GAMES, API_URL_TOP, API_KEY } from './api_keys/keys.js';
+/* import { API_URL_GAMES, API_URL_TOP, API_KEY } from './api_keys/keys.js'; */
 
 /* const SEARCH_GAMES_URL = `${API_URL_GAMES}?key=${API_KEY}&search=`; */
 const SEARCH_GAMES_URL = `${''}?key=${''}&search=`;
@@ -48,7 +48,8 @@ const fetchGAMES = async () => {
 // get top games fetch
 const getTopGames = async () => {
   try {
-    const res = await fetch(`${API_URL_TOP}?key=${API_KEY}`);
+   /*  const res = await fetch(`${API_URL_TOP}?key=${API_KEY}`); */
+    const res = await fetch(`${''}?key=${''}`);
     const data = await res.json();
     if (!res.ok) {
       console.log(data.description);
