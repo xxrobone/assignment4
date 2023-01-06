@@ -252,7 +252,7 @@ const createItem = (item) => {
   });
 };
 
-const searchBtnActive = document.querySelector('#label');
+const searchBtnActive = document.querySelector('.fa-solid.fa-magnifying-glass');
 
 searchBtnActive.addEventListener('click', () => {
   const wrapper = document.querySelector('form > .search_wrapper');
