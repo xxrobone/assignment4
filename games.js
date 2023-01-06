@@ -31,7 +31,7 @@ const fetchGAMES = async () => {
       console.log('error getting data');
       return;
     } else {
-      insertItem(gamesArr);
+      createItem(gamesArr);
       console.log(data);
       console.log(gamesArr);
       getPaginationNumbers(gamesArr);
@@ -52,7 +52,7 @@ const getTopGames = async () => {
       console.log(data.description);
       return;
     } else {
-      insertItem(data.results);
+      createItem(data.results);
     }
   } catch (error) {
     console.log(error + 'something went wrong');
@@ -197,9 +197,8 @@ const xbox = '<i class="fa-brands fa-xbox"></i>';
 const pc = '<i class="fa-solid fa-headset"></i>';
 const nintendo = '<i class="fa-solid fa-n"></i>';
 
-fetchGAMES();
 
-const insertItem = (item) => {
+const createItem = (item) => {
   let ul = gamesList;
   let html = '';
 
@@ -272,7 +271,7 @@ const handleSearch = async (search) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data.results);
-      insertItem(data.results);
+      createItem(data.results);
     });
 };
 
@@ -290,7 +289,7 @@ const handleSearch = async (search) => {
     .then((data) => {
       console.log(data.results);
       console.log(data.results[0].parent_platforms);
-      insertItem(data.results);
+      createItem(data.results);
     })
     .catch((err) => {
       console.error(err.message);
@@ -322,7 +321,7 @@ const handleSearch = async (search) => {
 
       gamesArr = data.results;
       console.log('data from pagination fetch : \n' + gamesArr);
-      insertItem(gamesArr);
+      createItem(gamesArr);
     }
   } catch (error) {
     console.log(error + 'something went wrong');

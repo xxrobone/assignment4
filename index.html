@@ -7,36 +7,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d3412194f0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css">
-    <title>Assignment 4</title>
+    <title>Game search</title>
 </head>
 
 <body>
     <header>
-        <h1>Assignment 4</h1>
-        <h3>Two different apis</h3>
-        <p>First is the Github repos</p>
-        <p>Second is the data from RobTheTeachers api</p>
+        <div class="logo">LOGO</div>
+        <nav class="nav">
+            <ul class="nav_wrapper">
+                <li class="nav_item"><a href="./index.html" class="nav_link">Home</a></li>
+                <li class="nav_item"><a href="./index.html" class="nav_link">games2play</a></li>
+                <li class="nav_item"><a href="./index.html" class="nav_link">Quotes</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="./games.html">games page</a></li>
-        </ul>
-    </nav>
     <main>
-        <button class="get_btn">get repos</button>
-        <button class="get_test_btn">get "apod"</button>
-
-        <div id="output">
+        <div class="hero">
+            <h1>GAMES SEARCH - name for site</h1>
+            <div class="platform_wrapper">
+                <i class="fa-solid fa-headset"></i>
+                <i class="fa-brands fa-playstation"></i>
+                <i class="fa-brands fa-xbox"></i>
+                <i class="fa-solid fa-n"></i>
+            </div>
 
         </div>
-        <div id="repos">
+        <button class="top_games_btn">Must play games</button>
+        <form id="form">
+            <label for="search">Search game:</label>
+            <input id="search" type="text" name="search" placeholder="game name... ">
+            <input type="submit" value="submit">
+        </form>
 
+        <p>The first is just to show layout, push button get games to see the fetch, but this one has keys so get your
+            own key at rawg</p>
+
+        <div class="pagination_wrapper">
+            <button class="btn prev_btn" title="prev">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="pagination_btns">
+            </div>
+            <button class="btn next_btn" title="next">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
         </div>
+        <ul id="games_list">
+            <li class="game_card game_card_front">
+                <img src="./warzone2.webp" alt="">
+                <h2>Game Title</h2>
+                <div class="game_info">
+                        <span class="game_score">Score 96%</span>
+                        <span class="game_platforms">xbox, pc, ps5</span>
+                </div>
+                <div class="game_card_back game_review">
+                    <p>review</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate ipsam fugiat facilis dolorum
+                        at impedit quae laboriosam ullam laudantium optio.</p>
+                </div>
 
+            </li>
+            <li class="game_card game_card_front">
+                <img src="./warzone2.webp" alt="">
+                <h2>Game Title</h2>
+                <div class="game_info">
+                        <span class="game_score">Score 96%</span>
+                        <span class="game_plattforms">xbox, pc, ps5</span>
+                </div>
+                <div class="game_card_back game_review">
+                    <p>review</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate ipsam fugiat facilis dolorum
+                        at impedit quae laboriosam ullam laudantium optio.</p>
+                </div>
+            </li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+            <li class="game_card game_card_front">item</li>
+
+        </ul>
     </main>
 
-    <script src="./script.js"></script>
+    <footer>
+        <h4>&#9426; - ROB - ONE - 2022</h4>
+    </footer>
+    <script src="games.js" type="module"></script>
 </body>
 
 </html>

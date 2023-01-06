@@ -1,5 +1,21 @@
-@import url('./games.css');
+@import url('./css/header.css');
+@import url('./css/nav.css');
+@import url('./css/games.css');
 @import url('./pagination.css');
+
+:root {
+    --color-primary: #232328;
+    --color-secondary: rgb(255, 106, 0);
+    --color-bg:#F9F6EE;
+    --color-header: linear-gradient(315deg, #6c63fe 0%, #5e057e 74%);
+    --color-nav-bg: #252525;
+    --color-link: #F9F6EE;
+
+    --color-card-bg: #5e057e;
+    --color-card: #dcbee6;
+
+}
+
 
 
 * {
@@ -9,8 +25,8 @@
 }
 
 body {
-    background-color: #282828;
-    color: #fafafa;
+    background-color: var(--color-bg);
+    color: #262626;
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -19,35 +35,23 @@ body {
     overflow-x: hidden;
 }
 
-header {
-    width: 100%;
-    height: 100px;
-    background-color: black;
+  h1 {
     text-align: center;
-}
+  }
+i {
+    height: 24px;
+    width: 24px;
+   /*  font-size: clamp(0.8rem, 1.5vw, 1rem); */
+  }
 
-nav {
+main {
     width: 100%;
-    background-color: silver;
-    display: grid;
-    place-content: center;
-}
-
-ul {
-
-    list-style: none;
-}
-
-li {
-    background-color: black;
-}
-
-li > a {
-    padding: 0.25rem 0.5rem;
-    text-decoration: none;
-    color: white;
-    font-size: clamp(1rem, 2vw, 1.4rem);
-}
+    height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+  }
 
 .main {
     margin: 0 auto;
@@ -60,7 +64,7 @@ li > a {
 .get_test_btn {
     margin: 1rem auto;
     padding: 1rem 2rem;
-    width: 50%;
+    width: unset;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
@@ -83,7 +87,7 @@ li > a {
     transition: all 0.6s ease-in-out;
 }
 
-#repos li {
+#repos > li {
     list-style-type: none;
     padding: 0.5rem 2rem;
     background-color: #000;
@@ -99,7 +103,7 @@ li > a {
     text-transform: uppercase;
 }
 
-a {
+.repo_a {
     color: #121212;
     font-size: 1rem;
     text-transform: capitalize;
@@ -108,7 +112,7 @@ a {
     text-decoration: double;
 }
 
-#repos li  a.repo_a {
+#repos > li  > a.repo_a {
     color: aqua;
     font-size: 1rem;
     text-transform: capitalize;
