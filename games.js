@@ -190,7 +190,7 @@ const setCurrentPage = async (pageNum) => {
 
 // creating the game cards from the fetch
 
-// icons
+// icons will only use 4 not getting mac, ios, android, etc
 
 const ps = '<i class="fa-brands fa-playstation"></i>';
 const xbox = '<i class="fa-brands fa-xbox"></i>';
