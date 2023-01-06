@@ -1,9 +1,12 @@
-/* import { API_URL_GAMES, API_URL_TOP, API_KEY } from './api_keys/keys.js'; */
+import { API_URL_GAMES, API_URL_TOP, API_KEY } from './api_keys/keys.js';
 
-/* const SEARCH_GAMES_URL = `${API_URL_GAMES}?key=${API_KEY}&search=`; */
-const SEARCH_GAMES_URL = `${''}?key=${''}&search=`;
+const SEARCH_GAMES_URL = `${API_URL_GAMES}?key=${API_KEY}&search=`;
+/* const SEARCH_GAMES_URL = `${''}?key=${''}&search=`; */
 
-let gamesBtn = document.querySelector('.top_games_btn');
+let mustplayBtn = document.querySelector('.mustplay_btn');
+let topScoreBtn = document.querySelector('.top_score_btn');
+let topLastyearBtn = document.querySelector('.top_lastyear_btn');
+let upcomingBtn = document.querySelector('.upcoming_btn');
 //
 const prevBtn = document.querySelector('.prev_btn');
 const nextBtn = document.querySelector('.next_btn');
@@ -24,13 +27,62 @@ let currentPage = 1;
 const fetchGAMES = async () => {
   try {
     const res = await fetch(
-      /* `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${20}` */
-      `${''}?key=${''}&page=${1}&page_size=${20}`
+      `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${20}`
+      /* `${''}?key=${''}&page=${1}&page_size=${20}` */
     );
     const data = await res.json();
     gamesArr = data.results;
     if (!res.ok) {
       console.log('error getting data');
+      return;
+    } else {
+      createItem(gamesArr);
+      console.log(gamesArr);
+      getPaginationNumbers(gamesArr);
+    }
+  } catch (error) {
+    console.log(error + 'something went wrong');
+  }
+};
+
+/* fetchGAMES(); */
+
+// get top games fetch
+const mustplayGames = async () => {
+  try {
+    const res = await fetch(`${API_URL_TOP}?key=${API_KEY}`);
+    const data = await res.json();
+    gamesArr = data.results;
+    if (!res.ok) {
+      console.log(data.description);
+      return;
+    } else {
+      createItem(gamesArr);
+    }
+  } catch (error) {
+    console.log(error + 'something went wrong');
+  }
+};
+
+// will do queries here
+
+const mustplayGamesUrl = `https://rawg.io/api/collections/must-play/games?key=${API_KEY}`;
+
+const upcomingGamesUrl = `https://api.rawg.io/api/games?key=${API_KEY}&dates=2022-01-01,2023-01-01&ordering=-added&page_size=20`;
+
+const topGamesUrl = `https://api.rawg.io/api/games?key=${API_KEY}&dates=2010-01-01,2023-01-01&ordering=-rating&page_size=20&metacritic=90,100`;
+
+const topLastYearUrl = `https://api.rawg.io/api/games?key=${API_KEY}&dates=2022-01-01,2022-12-30&ordering=-rating&page_size=20&metacritic=80,100`;
+
+let fetchURL = '';
+
+const fetchNew = async (url) => {
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    gamesArr = data.results;
+    if (!res.ok) {
+      console.log(data.description);
       return;
     } else {
       createItem(gamesArr);
@@ -43,58 +95,33 @@ const fetchGAMES = async () => {
   }
 };
 
-/* fetchGAMES(); */
-
-// get top games fetch
-const getTopGames = async () => {
-  try {
-   /*  const res = await fetch(`${API_URL_TOP}?key=${API_KEY}`); */
-    const res = await fetch(`${''}?key=${''}`);
-    const data = await res.json();
-    if (!res.ok) {
-      console.log(data.description);
-      return;
-    } else {
-      createItem(data.results);
-    }
-  } catch (error) {
-    console.log(error + 'something went wrong');
-  }
-};
-const fetchTest = async () => {
-  // https://api.rawg.io/api/platforms - plattforms
-  // upcoming games https://api.rawg.io/api/games?dates=2023-01-01,2023-12-31&ordering=-added
-  // most popular games in 2022 https://api.rawg.io/api/games?dates=2019-01-01,2019-12-31&ordering=-added
-  try {
-    const res = await fetch(
-     /*  `https://api.rawg.io/api/games?key=${API_KEY}?metacritic=80,100` */
-       `https://api.rawg.io/api/games?key=${''}?metacritic=80,100` 
-    );
-    const data = await res.json();
-    if (!res.ok) {
-      console.log(data.description);
-      return;
-    } else {
-      console.log(data.results);
-    }
-  } catch (error) {
-    console.log(error + 'something went wrong');
-  }
-};
-
-/* fetchTest(); */
 // platforms
 // pc 4
 // playstation 5 id 187
 // xbox series x/s id 186
 // Nintendo Switch id 7
 
-gamesBtn.addEventListener('click', () => {
-  getTopGames();
+mustplayBtn.addEventListener('click', () => {
+  fetchURL = mustplayGamesUrl;
+  fetchNew(fetchURL);
+});
+topScoreBtn.addEventListener('click', () => {
+  fetchURL = topGamesUrl;
+  fetchNew(fetchURL);
+});
+topLastyearBtn.addEventListener('click', () => {
+  fetchURL = topLastYearUrl;
+  fetchNew(fetchURL);
+});
+upcomingBtn.addEventListener('click', () => {
+  fetchURL = upcomingGamesUrl;
+  fetchNew(fetchURL);
 });
 
+// window load fetch
+
 window.addEventListener('load', () => {
-  /*  fetchGAMES(); */
+  /* fetchGAMES(); */
   setCurrentPage(1);
 
   prevBtn.addEventListener('click', () => {
@@ -107,6 +134,10 @@ window.addEventListener('load', () => {
 
   btnClick();
 });
+
+const removePagiBtns = () => {
+  paginationButtons.innerHTML = '';
+};
 
 const createPaginationButton = async (idx) => {
   const paginationBtn = document.createElement('button');
@@ -134,6 +165,7 @@ function btnClick() {
 }
 
 const getPaginationNumbers = async (data) => {
+  removePagiBtns();
   await data;
   pageCount = Math.ceil(data.length / itemsLimit);
   for (let i = 1; i <= pageCount; i++) {
@@ -258,7 +290,8 @@ const createItem = (item) => {
 
 const searchBtnActive = document.querySelector('.fa-solid.fa-magnifying-glass');
 
-searchBtnActive.addEventListener('click', () => {
+searchBtnActive.addEventListener('click', (e) => {
+  e.preventDefault();
   const wrapper = document.querySelector('form > .search_wrapper');
   const label = document.querySelector('form > .search_wrapper > label');
   const sInput = document.querySelector('#search');

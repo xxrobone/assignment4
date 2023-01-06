@@ -64,8 +64,11 @@ main {
     background: linear-gradient(to bottom right, rgba(0,0,0,.125, orange));
 }
 
-.top_games_btn,
-.get_test_btn {
+.buttons_wrapper {
+    display: flex;
+}
+
+.fetch_btn {
     margin: 1rem auto;
     padding: 1rem 2rem;
     width: unset;
@@ -74,7 +77,8 @@ main {
     transition: all 0.3s ease-in-out;
 }
 
-.top_games_btn:hover {
+
+.fetch_btn:hover {
     background-color: #282828;
     color: #fafafa;
 }
