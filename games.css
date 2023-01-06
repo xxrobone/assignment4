@@ -127,6 +127,12 @@ span {
   opacity: 1;
 }
 
+i {
+  height: 24px;
+  width: 24px;
+ /*  font-size: clamp(0.8rem, 1.5vw, 1rem); */
+}
+
 /* 
 
 .game_card:hover .game_review {
@@ -149,9 +155,9 @@ span {
 
 
 @media (min-width: 768px) {
-  #game_list {
+  #games_list {
     margin: 0 auto;
-    width: 80%;
+    width: 70%;
   }
 
   
@@ -159,6 +165,7 @@ span {
   position: relative;
   margin: 1rem 2rem;
   width: 256px;
+  max-height: 320px;
   height: 100%;
 }
 

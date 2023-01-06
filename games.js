@@ -41,7 +41,7 @@ const fetchGAMES = async () => {
   }
 };
 
-fetchGAMES();
+/* fetchGAMES(); */
 
 // get top games fetch
 const getTopGames = async () => {
@@ -190,16 +190,43 @@ const setCurrentPage = async (pageNum) => {
 
 // creating the game cards from the fetch
 
+// icons
+
+const ps = '<i class="fa-brands fa-playstation"></i>';
+const xbox = '<i class="fa-brands fa-xbox"></i>';
+const pc = '<i class="fa-solid fa-headset"></i>';
+const nintendo = '<i class="fa-solid fa-n"></i>';
+
+fetchGAMES();
+
 const insertItem = (item) => {
   let ul = gamesList;
   let html = '';
 
   item.forEach((item) => {
-    let platforms;
+    let platforms = '';
 
     item.parent_platforms.forEach((p) => {
+      let name = p.platform.name;
+      switch (name) {
+        case 'PC':
+          name = pc;
+          break;
+        case 'PlayStation':
+          name = ps;
+          break;
+        case 'Xbox':
+          name = xbox;
+          break;
+        case 'Nintendo':
+          name = nintendo;
+          break;
+        default:
+          return null;
+      }
+
       platforms += `
-                    <span>${p.platform.name}</span>
+                    <span>${name}</span>
                     `;
     });
 
@@ -300,3 +327,17 @@ const handleSearch = async (search) => {
     console.log(error + 'something went wrong');
   }
 }; */
+
+/* 
+getting the plattform icons test
+
+{p.platform.name 
+                    ?
+                     (p.platform.name === 'PC' ? pc : null
+                    ||  p.platform.name === 'PlayStation' ? ps : null
+                    || p.platform.name === 'Xbox' ?  xbox  : null 
+                    || p.platform.name === 'Nintendo'?  nintendo : null
+                    )   : p.platform.name          
+                    }
+
+*/
