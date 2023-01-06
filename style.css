@@ -9,11 +9,11 @@
     --color-primary: #232328;
     --color-secondary: rgb(255, 106, 0);
     --color-bg:#F9F6EE;
-    --color-header: linear-gradient(315deg, #6c63fe 0%, #5e057e 74%);
+    --color-header: linear-gradient(315deg, #6c63fe 0%, #252525 80%);
     --color-nav-bg: #252525;
     --color-link: #F9F6EE;
 
-    --color-card-bg: #5e057e;
+    --color-card-bg: #784B84;
     --color-card: #e4d9e8;
 
 }
