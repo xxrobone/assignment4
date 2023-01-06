@@ -111,7 +111,8 @@ form #submit.active {
 
 form #submit:hover,
 form #submit:active {
-
+    color: rgb(222, 222, 222);
+    cursor: pointer;
 }
 
 
