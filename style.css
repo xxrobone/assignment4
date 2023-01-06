@@ -137,19 +137,19 @@ a {
 }
 
 p {
-    padding: 0.5rem 4rem;
+    padding: 0.5rem 0;
     font-size: 1rem;
     font-weight: 100;
 }
 
 .desc {
-    padding: 0.5rem 4rem;
+    padding: 0.5rem 0;
     font-size: 1rem;
     font-weight: 400;
 }
 .date {
     margin: 1rem 0;
-    padding: 0.5rem 4rem;
+    padding: 0.5rem 0;
     font-size: 0.6rem;
     font-weight: 100;
     background-color: white;

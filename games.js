@@ -243,6 +243,7 @@ const insertItem = (item) => {
                 </div>
                 <div class="game_card_back game_review">
                     <p>review</p>
+                    <p>${item.name}</p>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate ipsam fugiat facilis dolorum
                         at impedit quae laboriosam ullam laudantium optio.</p>
                 </div>
