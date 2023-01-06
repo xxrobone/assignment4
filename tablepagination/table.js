@@ -1,5 +1,5 @@
 /* api https://randomuser.me/api/  */
-
+/* 
 const fetchBtn = document.querySelector('.fetch_btn');
 
 fetchBtn.addEventListener('click', fetchData, false);
@@ -86,3 +86,4 @@ function nextPage() {
   if (curPage * pageSize < data.results.length) curPage++;
   renderTable();
 }
+ */
