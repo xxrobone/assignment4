@@ -3,7 +3,7 @@
 @import url('./css/games.css');
 @import url('./css/hero.css');
 @import url('./css/search.css');
-@import url('./pagination.css');
+@import url('./css/pagination.css');
 
 :root {
     --color-primary: #232328;
