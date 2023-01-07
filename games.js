@@ -1,7 +1,6 @@
-import { API_URL_GAMES, API_URL_TOP, API_KEY } from './api_keys/keys.js';
+import { BASE_URL, API_KEY } from './keys.js';
 
-const SEARCH_GAMES_URL = `${API_URL_GAMES}?key=${API_KEY}&search=`;
-/* const SEARCH_GAMES_URL = `${''}?key=${''}&search=`; */
+const SEARCH_GAMES_URL = `${BASE_URL}?key=${API_KEY}&search=`;
 
 let mustplayBtn = document.querySelector('.mustplay_btn');
 let topScoreBtn = document.querySelector('.top_score_btn');
@@ -27,7 +26,7 @@ let currentPage = 1;
 const fetchGAMES = async () => {
   try {
     const res = await fetch(
-      `${API_URL_GAMES}?key=${API_KEY}&page=${1}&page_size=${20}`
+      `${BASE_URL}?key=${API_KEY}&page=${1}&page_size=${20}`
       /* `${''}?key=${''}&page=${1}&page_size=${20}` */
     );
     const data = await res.json();
@@ -45,10 +44,8 @@ const fetchGAMES = async () => {
   }
 };
 
-/* fetchGAMES(); */
-
 // get top games fetch
-const mustplayGames = async () => {
+/* const mustplayGames = async () => {
   try {
     const res = await fetch(`${API_URL_TOP}?key=${API_KEY}`);
     const data = await res.json();
@@ -63,16 +60,16 @@ const mustplayGames = async () => {
     console.log(error + 'something went wrong');
   }
 };
-
+ */
 // will do queries here
 
 const mustplayGamesUrl = `https://rawg.io/api/collections/must-play/games?key=${API_KEY}`;
 
-const upcomingGamesUrl = `https://api.rawg.io/api/games?key=${API_KEY}&dates=2022-01-01,2023-01-01&ordering=-added&page_size=20`;
+const upcomingGamesUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2023-12-01&ordering=-released&page_size=40`;
 
-const topGamesUrl = `https://api.rawg.io/api/games?key=${API_KEY}&dates=2010-01-01,2023-01-01&ordering=-rating&page_size=20&metacritic=90,100`;
+const topGamesUrl = `${BASE_URL}?key=${API_KEY}&dates=2010-01-01,2023-01-01&ordering=-rating&page_size=20&metacritic=90,100`;
 
-const topLastYearUrl = `https://api.rawg.io/api/games?key=${API_KEY}&dates=2022-01-01,2022-12-30&ordering=-rating&page_size=20&metacritic=80,100`;
+const topLastYearUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2022-12-30&ordering=-rating&page_size=20&metacritic=80,100`;
 
 let fetchURL = '';
 
@@ -121,7 +118,7 @@ upcomingBtn.addEventListener('click', () => {
 // window load fetch
 
 window.addEventListener('load', () => {
-  /* fetchGAMES(); */
+  fetchGAMES();
   setCurrentPage(1);
 
   prevBtn.addEventListener('click', () => {
@@ -322,70 +319,3 @@ const handleSearch = async (search) => {
       createItem(data.results);
     });
 };
-
-/* async function fetchAPI() {
-  fetch(`${API_URL}?key=${API_KEY}`)
-    .then((res) => {
-      if (!res.ok) {
-        console.log('Could not fetch data');
-        return;
-      } else {
-        console.log('response successful');
-        return res.json();
-      }
-    })
-    .then((data) => {
-      console.log(data.results);
-      console.log(data.results[0].parent_platforms);
-      createItem(data.results);
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
-} */
-
-/* const paginationData = async () => {
-  try {
-    const res = await fetch(
-      `${API_URL}?key=${API_KEY}&page=${currentPage}&page_size=${itemsLimit}`
-    );
-    const data = await res.json();
-    if (!res.ok) {
-      console.log("Error can't download data.");
-      return;
-    } else {
-      getPaginationNumbers();
-      setCurrentPage(1);
-
-      prevBtn.addEventListener('click', () => {
-        setCurrentPage(currentPage - 1);
-      });
-
-      nextBtn.addEventListener('click', () => {
-        setCurrentPage(currentPage + 1);
-      });
-
-      paginationBtnClick();
-
-      gamesArr = data.results;
-      console.log('data from pagination fetch : \n' + gamesArr);
-      createItem(gamesArr);
-    }
-  } catch (error) {
-    console.log(error + 'something went wrong');
-  }
-}; */
-
-/* 
-getting the plattform icons test
-
-{p.platform.name 
-                    ?
-                     (p.platform.name === 'PC' ? pc : null
-                    ||  p.platform.name === 'PlayStation' ? ps : null
-                    || p.platform.name === 'Xbox' ?  xbox  : null 
-                    || p.platform.name === 'Nintendo'?  nintendo : null
-                    )   : p.platform.name          
-                    }
-
-*/

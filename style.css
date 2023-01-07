@@ -1,9 +1,11 @@
 @import url('./css/header.css');
+@import url('./css/logo.css');
 @import url('./css/nav.css');
 @import url('./css/games.css');
 @import url('./css/hero.css');
 @import url('./css/search.css');
 @import url('./css/pagination.css');
+@import url('./css/eyes.css');
 
 :root {
     --color-primary: #232328;
@@ -65,16 +67,20 @@ main {
 }
 
 .buttons_wrapper {
+    max-width: 100%;
     display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
 .fetch_btn {
-    margin: 1rem auto;
+    margin: 0.2rem auto;
     padding: 1rem 2rem;
-    width: unset;
+    width: 40%;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    font-size: 0.6rem;
 }
 
 
