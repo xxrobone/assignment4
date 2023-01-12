@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d3412194f0.js" crossorigin="anonymous"></script>
-    <script src="./js/eyes.js" defer></script>
     <link rel="stylesheet" href="./style.css">
-    <title>Game search</title>
+    <title>VGA - Games</title>
 </head>
 
 <body>
@@ -28,26 +27,11 @@
         </div>
         <nav class="nav">
             <ul class="nav_wrapper">
-                <li class="nav_item"><a href="./index.html" class="nav_link">Home</a></li>
-                <li class="nav_item"><a href="./index.html" class="nav_link">games2play</a></li>
-                <li class="nav_item"><a href="./index.html" class="nav_link">Quotes</a></li>
+                <li class="nav_item"><a href="./index.html" class="nav_link">Games</a></li>
+                <li class="nav_item"><a href="./pages/movies.html" class="nav_link">Movies</a></li>
             </ul>
         </nav>
     </header>
-    <div class="susp">
-        <div class="eyes">
-            <div class="eyeball">
-                <div class="eyetop"></div>
-                <div class="eye"></div>
-                <div class="eyebottom"></div>
-            </div>
-            <div class="eyeball">
-                <div class="eyetop"></div>
-                <div class="eye"></div>
-                <div class="eyebottom"></div>
-            </div>
-        </div>
-    </div>
 
 
     <main>
@@ -62,6 +46,7 @@
             <img class="hero_img" src="./images/gaming.svg" alt="">
         </div>
         <form id="form" class="form">
+            <p class="text">Search games</p>
             <div class="search_wrapper">
                 <label for="search" id="label"><i class="fa-solid fa-magnifying-glass"></i></label>
                 <input id="search" type="text" name="search" placeholder="search game... ">
@@ -75,8 +60,7 @@
             <button class="upcoming_btn fetch_btn">Upcoming games</button>
         </div>
 
-        <p>The first is just to show layout, push button get games to see the fetch, but this one has keys so get your
-            own key at rawg</p>
+        <p class="error_msg"></p>
 
         <div class="pagination_wrapper">
             <button class="btn prev_btn" title="prev">
@@ -88,6 +72,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
+
         <ul id="games_list">
             <li class="game_card game_card_front">
                 <img src="./warzone2.webp" alt="">

@@ -1,11 +1,10 @@
 import { BASE_URL, API_KEY } from './keys.js';
 
-const SEARCH_GAMES_URL = `${BASE_URL}?key=${API_KEY}&search=`;
-
 let mustplayBtn = document.querySelector('.mustplay_btn');
 let topScoreBtn = document.querySelector('.top_score_btn');
 let topLastyearBtn = document.querySelector('.top_lastyear_btn');
 let upcomingBtn = document.querySelector('.upcoming_btn');
+let errorMsg = document.querySelector('.error_msg');
 //
 const prevBtn = document.querySelector('.prev_btn');
 const nextBtn = document.querySelector('.next_btn');
@@ -19,16 +18,27 @@ const itemsLimit = 10;
 let pageCount;
 let currentPage = 1;
 
-// set fetch here?
+// queries for different api endpoints
+
+const baseUrl = `${BASE_URL}?key=${API_KEY}&page=${1}&page_size=${20}`;
+
+const mustplayGamesUrl = `https://rawg.io/not/api/collections/must-play/games?key=${API_KEY}`;
+
+const upcomingGamesUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2023-12-01&ordering=-released&page_size=40`;
+
+const topGamesUrl = `${BASE_URL}?key=${API_KEY}&dates=2010-01-01,2023-01-01&ordering=-rating&page_size=20&metacritic=90,100`;
+
+const topLastYearUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2022-12-30&ordering=-rating&page_size=20&metacritic=80,100`;
+
+const SEARCH_GAMES_URL = `${BASE_URL}?key=${API_KEY}&search=`;
+
+let fetchURL = '';
 
 // fetch api
 
 const fetchGAMES = async () => {
   try {
-    const res = await fetch(
-      `${BASE_URL}?key=${API_KEY}&page=${1}&page_size=${20}`
-      /* `${''}?key=${''}&page=${1}&page_size=${20}` */
-    );
+    const res = await fetch(baseUrl);
     const data = await res.json();
     gamesArr = data.results;
     if (!res.ok) {
@@ -41,6 +51,12 @@ const fetchGAMES = async () => {
     }
   } catch (error) {
     console.log(error + 'something went wrong');
+    errorMsg.classList.add('show');
+    errorMsg.textContent = 'OOPS! something went wrong, please try again';
+    setTimeout(() => {
+      errorMsg.classList.remove('show');
+      errorMsg.textContent = '';
+    }, 3000);
   }
 };
 
@@ -61,17 +77,6 @@ const fetchGAMES = async () => {
   }
 };
  */
-// will do queries here
-
-const mustplayGamesUrl = `https://rawg.io/api/collections/must-play/games?key=${API_KEY}`;
-
-const upcomingGamesUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2023-12-01&ordering=-released&page_size=40`;
-
-const topGamesUrl = `${BASE_URL}?key=${API_KEY}&dates=2010-01-01,2023-01-01&ordering=-rating&page_size=20&metacritic=90,100`;
-
-const topLastYearUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2022-12-30&ordering=-rating&page_size=20&metacritic=80,100`;
-
-let fetchURL = '';
 
 const fetchNew = async (url) => {
   try {
@@ -89,6 +94,12 @@ const fetchNew = async (url) => {
     }
   } catch (error) {
     console.log(error + 'something went wrong');
+    errorMsg.classList.add('show');
+    errorMsg.textContent = 'OOPS! something went wrong, please try again';
+    setTimeout(() => {
+      errorMsg.classList.remove('show');
+      errorMsg.textContent = '';
+    }, 3000);
   }
 };
 

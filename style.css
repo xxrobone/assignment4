@@ -5,11 +5,13 @@
 @import url('./css/hero.css');
 @import url('./css/search.css');
 @import url('./css/pagination.css');
-@import url('./css/eyes.css');
+@import url('./css/fonts.css');
+
+@import url('./css/error.css');
 
 :root {
     --color-primary: #232328;
-    --color-secondary: rgb(255, 106, 0);
+    --color-secondary: #ededed;
     --color-bg:#F9F6EE;
     --color-header: linear-gradient(315deg, #6c63fe 0%, #252525 80%);
     --color-nav-bg: #252525;
@@ -19,8 +21,6 @@
     --color-card: #e4d9e8;
 
 }
-
-
 
 * {
     margin: 0;

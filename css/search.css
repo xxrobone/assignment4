@@ -1,16 +1,23 @@
 .form {
+    margin: 0.5rem auto; 
     position: relative;
     height: 30px;
-    width: 80%;
-    margin: 0.5rem auto; 
-    display: block;   
-   
+    width: 80%;    
+    display: block;
+    z-index: 2;    
 }
 
+.text {
+    font-family: var(--font-primary);
+    position: absolute;
+    left: 55%;
+    z-index: -1;
+}
 
 .form .search_wrapper {
     position: absolute;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     top: 0;
     height: 100%;
     width: 30px;
@@ -18,14 +25,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(65, 65, 65);
+    background-color: var(--color-primary);
     border-radius: 25px;  
     transition: width 0.3s ease;  
+}
+
+.form .search_wrapper:hover,
+.form .search_wrapper:focus {
+    background-color: var(--color-card-bg);  
 }
 
 .form .search_wrapper.active {
     position: relative;
     left: 0;
+    transform: translateX(0%);
     top: 0;
     height: 100%;
     width: 100%;

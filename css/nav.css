@@ -1,7 +1,6 @@
 .nav {
     width: 100%;
-    display: grid;
-    place-content: center;
+    display: block;
     border-radius: 2px;
 }
 
@@ -9,8 +8,7 @@
     list-style: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: var(--color-nav-bg);
+    justify-content: flex-end;
 }
 
 .nav_item {    
@@ -19,6 +17,15 @@
     padding: 0.5rem 1rem;
     background-color: transparent;
     transition: all 0.3s ease-in-out;
+    background-color: var(--color-nav-bg);
+}
+
+.nav_item:nth-child(1) {
+    border-right: 2px solid white;
+}
+
+.nav_item:nth-child(2) {
+    margin-right: 4rem;
 }
 
 .nav_item::after {
