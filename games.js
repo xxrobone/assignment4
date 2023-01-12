@@ -291,7 +291,6 @@ const createItem = (item) => {
                 </div>
             </li>
     `;
-
     ul.innerHTML = html;
   });
 };

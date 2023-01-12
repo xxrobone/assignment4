@@ -18,10 +18,3 @@
     font-family: SourcePro;
     src: url("../assets/fonts/SourceSansPro-Regular.otf");
   }
-
-  :root {
-    --font-primary: SourcePro;
-    --font-bold: SourceProBold;
-    --font-light: SourceProLight;
-    --font-secondary: Kenoky;
-  }
