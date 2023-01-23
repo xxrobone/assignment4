@@ -2,6 +2,10 @@
 
 A webpage using apis to search for games and movies
 
+## CME
+
+This is assignment 4 on the frontend course
+
 ## APIS
 using rawg.io and themoviedb api
 - [RAWG][rawg]
