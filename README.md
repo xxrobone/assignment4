@@ -4,6 +4,8 @@ A webpage using apis to search for games and movies
 
 ## APIS
 using rawg.io and themoviedb api
+- [RAWG][rawg]
+- [The movie db][themoviedb]
 
 ## __Preview__
 
@@ -36,3 +38,6 @@ or contact me and I'll send you a demo link
 [javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
 [html]: https://www.w3schools.com/html/
 [css]: https://www.w3.org/Style/CSS/Overview.en.html
+
+[rawg]: https://rawg.io/apidocs
+[themoviedb]: https://www.themoviedb.org/documentation/api
