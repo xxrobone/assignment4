@@ -47,7 +47,7 @@ const fetchGames = async () => {
       return;
     } else {
       createItem(itemsArr);
-      /*  console.log(itemsArr); */
+      /* console.log(itemsArr); */
       getPaginationNumbers(itemsArr);
     }
   } catch (error) {
@@ -61,6 +61,8 @@ const fetchGames = async () => {
   }
 };
 
+
+// unnessary could have just used one and changed the fetch url, but decided to keep it this way
 const fetchNew = async (url) => {
   try {
     const res = await fetch(url);
