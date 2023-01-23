@@ -1,4 +1,4 @@
-import { BASE_URL, API_KEY } from './keys.js';
+import { BASE_URL, API_KEY } from './keys/keys.js';
 
 let mustplayBtn = document.querySelector('.mustplay_btn');
 let topScoreBtn = document.querySelector('.top_score_btn');
@@ -9,12 +9,12 @@ let errorMsg = document.querySelector('.error_msg');
 const prevBtn = document.querySelector('.prev_btn');
 const nextBtn = document.querySelector('.next_btn');
 const paginationButtons = document.querySelector('.pagination_btns');
-const gamesList = document.querySelector('#games_list');
-/* let gamesArr = [...gamesList.querySelectorAll('.game_card')]; */
-let gamesArr = [];
+const itemsList = document.querySelector('#items_list');
+/* let itemsArr = [...itemsList.querySelectorAll('.item_card')]; */
+let itemsArr = [];
 
 const itemsLimit = 10;
-/* const pageCount = Math.ceil(gamesArr.length / itemsLimit); */
+/* const pageCount = Math.ceil(itemsArr.length / itemsLimit); */
 let pageCount;
 let currentPage = 1;
 
@@ -22,32 +22,33 @@ let currentPage = 1;
 
 const baseUrl = `${BASE_URL}?key=${API_KEY}&page=${1}&page_size=${20}`;
 
-const mustplayGamesUrl = `https://rawg.io/not/api/collections/must-play/games?key=${API_KEY}`;
+// found this mustplayitems api enpoint on stackoverflow set an error on purpose on this fetch, take away not/ and it works
+const mustplayitemsUrl = `https://rawg.io/not/api/collections/must-play/items?key=${API_KEY}`;
 
-const upcomingGamesUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2023-12-01&ordering=-released&page_size=40`;
+const upcomingitemsUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2023-12-01&ordering=-released&page_size=40`;
 
-const topGamesUrl = `${BASE_URL}?key=${API_KEY}&dates=2010-01-01,2023-01-01&ordering=-rating&page_size=20&metacritic=90,100`;
+const topitemsUrl = `${BASE_URL}?key=${API_KEY}&dates=2010-01-01,2023-01-01&ordering=-rating&page_size=20&metacritic=90,100`;
 
 const topLastYearUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2022-12-30&ordering=-rating&page_size=20&metacritic=80,100`;
 
-const SEARCH_GAMES_URL = `${BASE_URL}?key=${API_KEY}&search=`;
+const SEARCH_itemS_URL = `${BASE_URL}?key=${API_KEY}&search=`;
 
 let fetchURL = '';
 
 // fetch api
 
-const fetchGAMES = async () => {
+const fetchGames = async () => {
   try {
     const res = await fetch(baseUrl);
     const data = await res.json();
-    gamesArr = data.results;
+    itemsArr = data.results;
     if (!res.ok) {
       console.log('error getting data');
       return;
     } else {
-      createItem(gamesArr);
-      console.log(gamesArr);
-      getPaginationNumbers(gamesArr);
+      createItem(itemsArr);
+      /*  console.log(itemsArr); */
+      getPaginationNumbers(itemsArr);
     }
   } catch (error) {
     console.log(error + 'something went wrong');
@@ -60,37 +61,19 @@ const fetchGAMES = async () => {
   }
 };
 
-// get top games fetch
-/* const mustplayGames = async () => {
-  try {
-    const res = await fetch(`${API_URL_TOP}?key=${API_KEY}`);
-    const data = await res.json();
-    gamesArr = data.results;
-    if (!res.ok) {
-      console.log(data.description);
-      return;
-    } else {
-      createItem(gamesArr);
-    }
-  } catch (error) {
-    console.log(error + 'something went wrong');
-  }
-};
- */
-
 const fetchNew = async (url) => {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    gamesArr = data.results;
+    itemsArr = data.results;
     if (!res.ok) {
-      console.log(data.description);
+      console.log('couldent fetch data');
       return;
     } else {
-      createItem(gamesArr);
-      console.log(data);
-      console.log(gamesArr);
-      getPaginationNumbers(gamesArr);
+      createItem(itemsArr);
+      /* console.log(data);
+      console.log(itemsArr); */
+      getPaginationNumbers(itemsArr);
     }
   } catch (error) {
     console.log(error + 'something went wrong');
@@ -110,11 +93,11 @@ const fetchNew = async (url) => {
 // Nintendo Switch id 7
 
 mustplayBtn.addEventListener('click', () => {
-  fetchURL = mustplayGamesUrl;
+  fetchURL = mustplayitemsUrl;
   fetchNew(fetchURL);
 });
 topScoreBtn.addEventListener('click', () => {
-  fetchURL = topGamesUrl;
+  fetchURL = topitemsUrl;
   fetchNew(fetchURL);
 });
 topLastyearBtn.addEventListener('click', () => {
@@ -122,14 +105,14 @@ topLastyearBtn.addEventListener('click', () => {
   fetchNew(fetchURL);
 });
 upcomingBtn.addEventListener('click', () => {
-  fetchURL = upcomingGamesUrl;
+  fetchURL = upcomingitemsUrl;
   fetchNew(fetchURL);
 });
 
 // window load fetch
 
 window.addEventListener('load', () => {
-  fetchGAMES();
+  fetchGames();
   setCurrentPage(1);
 
   prevBtn.addEventListener('click', () => {
@@ -216,7 +199,7 @@ const handlePageButtonsStatus = () => {
 };
 
 const setCurrentPage = async (pageNum) => {
-  let data = [...document.querySelectorAll('.game_card')];
+  let data = [...document.querySelectorAll('.item_card')];
   currentPage = pageNum;
   const prevCount = (pageNum - 1) * itemsLimit;
   const currCount = pageNum * itemsLimit;
@@ -232,7 +215,7 @@ const setCurrentPage = async (pageNum) => {
   });
 };
 
-// creating the game cards from the fetch
+// creating the item cards from the fetch
 
 // icons will only use 4 not getting mac, ios, android, etc
 
@@ -242,7 +225,7 @@ const pc = '<i class="fa-solid fa-headset"></i>';
 const nintendo = '<i class="fa-solid fa-n"></i>';
 
 const createItem = (item) => {
-  let ul = gamesList;
+  let ul = itemsList;
   let html = '';
 
   item.forEach((item) => {
@@ -273,18 +256,18 @@ const createItem = (item) => {
     });
 
     html += `
-    <li class="game_card game_card_front">
-                <img src="${item.background_image}" alt="">
+    <li class="item_card item_card_front">
+                <img src="${item.background_image}" class="game_img" alt="img of ${item.name}">
                 <h2>${item.name}</h2>
-                <div class="game_info">
+                <div class="item_info">
                     <div>
-                        <span class="game_score">Rating: ${item.rating}</span>
-                        <span class="game_score">Metacritic: ${item.metacritic}</span>
-                        <p class="game_plattforms">${platforms}</p>
+                        <span class="item_score">Rating: ${item.rating}</span>
+                        <span class="item_score">Metacritic: ${item.metacritic}</span>
+                        <p class="item_platforms">${platforms}</p>
                     </div>
                 </div>
-                <div class="game_card_back game_review">
-                    <p>review</p>
+                <div class="item_card_back item_review">
+                    <p>Review: </p>
                     <p>${item.name}</p>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate ipsam fugiat facilis dolorum
                         at impedit quae laboriosam ullam laudantium optio.</p>
@@ -295,19 +278,33 @@ const createItem = (item) => {
   });
 };
 
-const searchBtnActive = document.querySelector('.fa-solid.fa-magnifying-glass');
+const searchBtnActive = document.querySelector('.search_btn');
+
+// helper functions
+const toggleClass = (el, className) => el.classList.toggle(className);
+const addClass = (el, className) => el.classList.add(className);
+const removeClass = (el, className) => el.classList.remove(className);
 
 searchBtnActive.addEventListener('click', (e) => {
   e.preventDefault();
-  const wrapper = document.querySelector('form > .search_wrapper');
-  const label = document.querySelector('form > .search_wrapper > label');
-  const sInput = document.querySelector('#search');
-  const subBtn = document.querySelector('form > .search_wrapper > #submit');
+  toggleClass(document.querySelector('form > .search_wrapper'), 'active');
+  toggleClass(
+    document.querySelector('form > .search_wrapper > label'),
+    'active'
+  );
+  toggleClass(document.querySelector('#search'), 'active');
+  toggleClass(
+    document.querySelector('form > .search_wrapper > #submit'),
+    'active'
+  );
 
-  wrapper.classList.toggle('active');
-  label.classList.toggle('active');
-  sInput.classList.toggle('active');
-  subBtn.classList.toggle('active');
+  if (searchBtnActive.classList.contains('fa-magnifying-glass')) {
+    removeClass(searchBtnActive, 'fa-magnifying-glass');
+  }
+  /* wrapper.classList.toggle('active');
+  label.classList.toggle('active'); */
+  /* sInput.classList.toggle('active');
+  subBtn.classList.toggle('active'); */
 });
 
 // for the search function get input from form
@@ -315,17 +312,29 @@ const form = document.getElementById('form');
 form.addEventListener('submit', function (e) {
   e.preventDefault(); // so many ways of acutally doing this :D
   let search = document.querySelector('#search').value;
-  console.log('this is the new search value inside submit function: ' + search);
+  console.log('this is the search value: ' + search);
   handleSearch(search);
   form.reset();
+
+  removeClass(document.querySelector('form > .search_wrapper'), 'active');
+  removeClass(
+    document.querySelector('form > .search_wrapper > label'),
+    'active'
+  );
+  removeClass(document.querySelector('#search'), 'active');
+  removeClass(
+    document.querySelector('form > .search_wrapper > #submit'),
+    'active'
+  );
+  addClass(searchBtnActive, 'fa-magnifying-glass');
 });
 
 // function to fetch the search query
 const handleSearch = async (search) => {
-  fetch(SEARCH_GAMES_URL + `${search}`)
+  fetch(SEARCH_itemS_URL + `${search}`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.results);
+      /*  console.log(data.results); */
       createItem(data.results);
     });
 };

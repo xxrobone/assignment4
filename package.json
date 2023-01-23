@@ -1,19 +1,19 @@
 {
   "name": "vga",
-  "description": "Started as a assignment at cme \"assingment 4\"\r And then I continued to work on it, currently doing a new version of this",
   "version": "1.0.0",
-  "main": "games.js",
+  "description": "video game archives, a video game search project",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xxrobone/assignment4.git"
+    "url": "git+https://github.com/xxrobone/vga.git"
   },
-  "author": "robert wagar",
+  "author": "Robert Wägar",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/xxrobone/assignment4/issues"
+    "url": "https://github.com/xxrobone/vga/issues"
   },
-  "homepage": "https://github.com/xxrobone/assignment4#readme"
+  "homepage": "https://github.com/xxrobone/vga#readme"
 }

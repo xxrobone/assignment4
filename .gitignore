@@ -1,8 +1,8 @@
-# ignore all folder with
-
-/api_keys
-
-# and files containg my keys
-
+/node_modules
+*keys
+/CNAME
+*CNAME
+/src/keys
+/src/keys/*keys.js
 *.env
-*keys.js
+/dist

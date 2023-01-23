@@ -1,6 +1,6 @@
 @import url('./card.css');
 
-#games_list {
+#items_list {
   list-style-type: none;
   padding: 2rem 1rem;
   width: 100%;
@@ -16,8 +16,14 @@
   object-fit: cover;
 }
 
+#items_list.movie_list {
+  background-color: var(--color-movie-bg);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.089), rgba(255, 255, 255, 0.13)),url('../images/alienmovie.svg');
+  background-blend-mode: hard-light;
+}
+
 @media (min-width: 768px) {
-#games_list {
+#items_list {
   background-repeat: no-repeat;
 }
 }
@@ -43,32 +49,16 @@
 
 
 @media ( width > 480px) {
-  #games_list {
+  #items_list {
     width: 100%;
-  }
-  .game_card {
-    position: relative;
-    margin: 1rem 1rem;
-    width: 256px;
-    max-height: 320px;
-    height: 100%;
   }
   }
 
 
 @media (width > 992px) {
-  #games_list {
+  #items_list {
     width: 80%;
   }
-
-  
-.game_card {
-  position: relative;
-  margin: 1rem 2rem;
-  width: 256px;
-  max-height: 320px;
-  height: 100%;
-}
 }
 
 
