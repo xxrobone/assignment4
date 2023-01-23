@@ -1,12 +1,8 @@
 {
-  "dependencies": {
-    "dotenv": "^16.0.3"
-  },
   "name": "vga",
   "description": "Started as a assignment at cme \"assingment 4\"\r And then I continued to work on it, currently doing a new version of this",
   "version": "1.0.0",
   "main": "games.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

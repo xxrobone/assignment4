@@ -90,7 +90,7 @@ form input[type="text"] {
     width: 0;
     opacity: 0;
     background-color: transparent;
-    color: var(--color-card);
+    color: var(--color-secondary);
     border-radius: 25px;
     border: 1px solid rgba(151, 151, 151, 0.634);
     transform: translateY(-50px);
