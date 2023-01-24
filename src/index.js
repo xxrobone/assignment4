@@ -53,7 +53,7 @@ const fetchGames = async () => {
   } catch (error) {
     console.log(error + 'something went wrong');
     errorMsg.classList.add('show');
-    errorMsg.textContent = 'OOPS! something went wrong, please try again';
+    errorMsg.textContent = 'Error fetching data';
     setTimeout(() => {
       errorMsg.classList.remove('show');
       errorMsg.textContent = '';
@@ -67,7 +67,7 @@ const fetchNew = async (url) => {
     const data = await res.json();
     itemsArr = data.results;
     if (!res.ok) {
-      console.log('couldent fetch data');
+      console.log('Error fetching data');
       return;
     } else {
       createItem(itemsArr);
@@ -78,8 +78,7 @@ const fetchNew = async (url) => {
   } catch (error) {
     console.log(error + 'something went wrong');
     errorMsg.classList.add('show');
-    errorMsg.textContent =
-      'Could not load data, server error (I dont know what to write here)';
+    errorMsg.textContent = 'Could not load data, please try again';
     setTimeout(() => {
       errorMsg.classList.remove('show');
       errorMsg.textContent = '';
@@ -99,7 +98,7 @@ const handleSearch = async (search) => {
     const data = await res.json();
     itemsArr = data.results;
     if (!res.ok) {
-      console.log('couldent find the game you was looking for');
+      console.log('Seach error could not fetch data');
       return;
     } else {
       createItem(itemsArr);
@@ -108,7 +107,8 @@ const handleSearch = async (search) => {
   } catch (error) {
     console.log(error + 'something went wrong');
     errorMsg.classList.add('show');
-    errorMsg.textContent = 'OOPS! something went wrong, please try again';
+    errorMsg.textContent =
+      'OOPS! the game you are looking for might not be available at the moment';
     setTimeout(() => {
       errorMsg.classList.remove('show');
       errorMsg.textContent = '';
